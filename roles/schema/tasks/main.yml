@@ -11,18 +11,13 @@
   shell: "wget -qO - https://packages.confluent.io/deb/7.2/archive.key | apt-key add -"
 
 - name: Add Confluent Repository
-  zypper_repository:
-    state: present
-    name: "Confluent Package Mirror"
-    repo: "https://packages.confluent.io/clients/deb"
+  template:
+    src: "https://packages.confluent.io/clients/deb"
+    dest: /etc/apt/sources.list
+    owner: kafka
+    group: kafka
+    mode: 0640
   when: true
-
-- name: Add Custom Confluent Repository
-  zypper_repository:
-    state: present
-    name: "Confluent Package Mirror"
-    repo: "https://packages.confluent.io/clients/deb"
-  when: false
 
 - name: Update Schema Registry
   apt:
