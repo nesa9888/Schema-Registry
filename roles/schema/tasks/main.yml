@@ -12,9 +12,8 @@
 
 - name: Add Confluent Repository
   become: yes
-  apt_repository: repo="deb [arch=amd64] https://packages.confluent.io/deb/7.2 stable main"
-  state: present
-
+  apt_repository: repo="deb [arch=amd64] https://packages.confluent.io/deb/7.2 stable main" state=present
+  
 - name: Update Schema Registry
   apt:
     update_cache: yes
