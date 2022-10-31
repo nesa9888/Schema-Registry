@@ -11,13 +11,8 @@
   shell: "wget -qO - https://packages.confluent.io/deb/7.2/archive.key | apt-key add -"
 
 - name: Add Confluent Repository
-  template:
-    src: "https://packages.confluent.io/clients/deb"
-    dest: /etc/apt/sources.list
-    owner: kafka
-    group: kafka
-    mode: 0640
-  when: true
+  become: yes
+  shell: ""deb [arch=amd64] https://packages.confluent.io/deb/7.2 stable main""
 
 - name: Update Schema Registry
   apt:
