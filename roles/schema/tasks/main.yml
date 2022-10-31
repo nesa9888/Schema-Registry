@@ -20,11 +20,11 @@
   when: true
 
 - name: Add Custom Confluent Repository
-zypper_repository:
-  state: present
-  name: "Confluent Package Mirror"
-  repo: "https://packages.confluent.io/clients/deb"
-when: false
+  zypper_repository:
+    state: present
+    name: "Confluent Package Mirror"
+    repo: "https://packages.confluent.io/clients/deb"
+  when: false
 
 - name: Update Schema Registry
   apt:
