@@ -1,0 +1,6 @@
+---
+- name: Install confluent platform packages
+  hosts: all
+  become: true
+  roles:
+    - schema 

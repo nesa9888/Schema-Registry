@@ -1,0 +1,38 @@
+- name: Install JRE after apt update
+  become: yes
+  apt:
+    name: 
+      - default-jre
+    state: present
+    update_cache: yes
+
+- name: Import Confluent Repository Public Key
+  rpm_key:
+    state: present
+    key: "https://packages.confluent.io/deb/7.2/archive.key"
+  when: true
+
+- name: Add Confluent Repository
+  zypper_repository:
+    state: present
+    name: "Confluent Package Mirror"
+    repo: "https://packages.confluent.io/clients/deb"
+  when: true
+
+ - name: Add Custom Confluent Repository
+  zypper_repository:
+    state: present
+    name: "Confluent Package Mirror"
+    repo: "https://packages.confluent.io/clients/deb"
+  when: false
+
+- name: Update Schema Registry
+  apt:
+    update_cache: yes
+
+- name: Install Schema Registry
+  apt:
+    name: confluent-platform
+    state: present
+
+
