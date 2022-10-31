@@ -12,7 +12,7 @@
 
 - name: Add Confluent Repository
   become: yes
-  shell: "deb https://packages.confluent.io/clients/deb $(Jammy Jellyfish -cs) main"
+  shell: "deb [arch=amd64] https://packages.confluent.io/deb/7.2 stable main"
 
 - name: Update Schema Registry
   apt:
